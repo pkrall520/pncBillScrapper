@@ -1,0 +1,12 @@
+{
+  "host": "https://www.onlinebanking.pnc.com",
+  "appKey": "",
+  "username": "",
+  "password": "",
+  "vwId": "",
+  "challenge" : {
+    "q1": "",
+    "q2": "",
+    "q3": ""
+  }
+}
