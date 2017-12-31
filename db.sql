@@ -53,6 +53,13 @@ insert into biller(name, search_code, freq_id, category_id)
   FROM freq f, category cate
   WHERE f.name = 'monthly' and cate.name = 'Carly';
 
+  select * from (select b.name, b.freq_id, b.category_id, b.id as biller_id, t.amount, max(t.pay_date) as pay_date from biller b
+  right join transaction t
+  on t.biller_id = b.id
+  where b.freq_id = 4
+  group by b.name) as innerSelect
+  where innerSelect.pay_date < DATE_ADD(CURRENT_DATE, INTERVAL -1 MONTH )
+
 insert into transaction(amount, biller_id, pay_date, created_date, is_income)
   select 150.25, b.id,CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP, false from biller b where b.name = 'Capital One Crediit Card';
