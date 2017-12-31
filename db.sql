@@ -58,7 +58,8 @@ insert into biller(name, search_code, freq_id, category_id)
   on t.biller_id = b.id
   where b.freq_id = 4
   group by b.name) as innerSelect
-  where innerSelect.pay_date < DATE_ADD(CURRENT_DATE, INTERVAL -1 MONTH )
+  where innerSelect.pay_date < date_add(CURRENT_DATE,interval -DAY(CURRENT_DATE)+1 DAY)
+
 
 insert into transaction(amount, biller_id, pay_date, created_date, is_income)
   select 150.25, b.id,CURRENT_TIMESTAMP,
